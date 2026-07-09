@@ -171,6 +171,33 @@
 
   #save-result-img-btn{ width:100%; }
 
+  /* 초대의 글 */
+  #screen-invite{ padding-top:44px; }
+  .invite-title{
+    font-family:'Noto Serif KR',serif; font-weight:500; font-size:26px;
+    letter-spacing:0.05em; color:var(--ink); text-align:center; margin:0 0 44px;
+  }
+  .invite-section-title{
+    font-family:'Noto Serif KR',serif; font-size:16px; font-weight:500;
+    text-align:center; color:var(--ink); margin:0 0 10px; line-height:1.5;
+  }
+  .invite-body p{
+    font-size:13px; line-height:1.85; color:var(--ink); margin:0 0 16px;
+  }
+  .invite-divider{ width:32px; height:1px; background:var(--line); margin:34px auto; }
+
+  /* 자기 탐구 질문 페이지 (타이포그래피) */
+  #screen-inquiry{ justify-content:center; align-items:center; text-align:center; }
+  .inquiry-eyebrow{ font-size:11px; letter-spacing:0.15em; color:var(--muted); margin-bottom:48px; }
+  .inquiry-block{ margin-bottom:44px; }
+  .inquiry-num{ font-size:11px; color:var(--muted); margin-bottom:10px; }
+  .inquiry-question{
+    font-family:'Noto Serif KR',serif; font-size:20px; font-weight:500;
+    color:var(--ink); line-height:1.6;
+  }
+  .inquiry-divider{ width:28px; height:1px; background:var(--line); margin:0 auto 44px; }
+  .inquiry-mark{ font-size:11px; letter-spacing:0.15em; color:var(--muted); margin-top:56px; }
+
   /* result page capture (image/pdf export) */
   #result-capture{
     width:460px; background:var(--bg); padding:36px 30px 30px; box-sizing:border-box;
@@ -583,21 +610,50 @@ function elDesc(id){
 
 function render(){
   app.innerHTML =
+    screenInviteHTML() +
     screenIntroHTML() +
     screenSurveyHTML() +
     screenBridgeHTML() +
     screenResultHTML() +
+    screenInquiryHTML() +
     screenReportHTML() +
     screenSaveHTML();
   bindEvents();
-  showScreen('intro');
+  showScreen('invite');
 }
 
 function showScreen(name){
-  ['intro','survey','bridge','result','report','save'].forEach(function(n){
+  ['invite','intro','survey','bridge','result','inquiry','report','save'].forEach(function(n){
     var el = document.getElementById('screen-' + n);
     if (el) el.classList.toggle('active', n === name);
   });
+}
+
+function screenInviteHTML(){
+  return (
+    '<div id="screen-invite" class="screen">' +
+      '<div class="invite-title">숲명상</div>' +
+
+      '<div class="invite-section-title">자연이 건네는 따뜻한 위로와 환대</div>' +
+
+      '<div class="invite-body">' +
+        '<p>치열한 경쟁과 성과 중심의 일상 속에서, 우리는 너무도 많은 \'사회적 가면\'을 쓰고 살아갑니다. 누군가의 부모, 자식, 직장인으로서, 끊임없이 자신의 가치를 증명해내야 하는 존재로서 말이죠. 그 무거운 무게감에 지쳐 웅크리고 있을 당신의 어깨를 잠시 내려놓으시길 바랍니다.</p>' +
+        '<p>창가에 비친 저 햇살은 당신이 오늘 하루를 어떻게 보냈는지, 사회적으로 어떤 위치에 있는지 결코 묻지 않습니다. 그저 지금 이 순간, 있는 그대로 당신을 비추고 따뜻하게 감싸줄 뿐입니다. 이처럼 외부의 평가로부터 자유로운 자연은, 당신 안의 가장 깊고 서늘한 그늘까지도 다정하게 어루만지는 법을 알고 있습니다.</p>' +
+        '<p>잠시 당신을 규정하던 무거운 역할들을 내려놓고, 자연이 허락한 이 고요한 빛의 공간으로 걸어 들어오세요. 당신이 누구이든 관계없습니다. 이 자연 안에서 우리는 모두 같은 존재일 뿐입니다. 숲의 빛을 느끼고, 우리와 함께 살아가는 나무와 식물 곁에서 천천히 숨 쉬는 것만으로도 당신은 이미 충분히 온전합니다. 당신의 본질을 맑게 깨우는 이 고요한 여정에 당신을 진심으로 초대합니다.</p>' +
+      '</div>' +
+
+      '<div class="invite-divider"></div>' +
+
+      '<div class="invite-section-title">숲의 리듬으로 나를 조율하는 시간</div>' +
+      '<div class="invite-body" style="margin-top:18px;">' +
+        '<p>이곳에서는 잠시 일상의 규칙을 잊어도 좋습니다. 숲이 건네는 단순한 아름다움에 마음을 열고 느껴보세요. 그것만으로도 우리는 완전히 새로운 \'경험\' 속으로 들어서게 됩니다.</p>' +
+        '<p>무언가를 애써 하려 하지 않아도 괜찮습니다. 그저 감각을 열고 마음의 주파수를 숲의 결에 맞추는 것, 그것이 우리가 함께할 조율의 전부입니다. 나를 규정하던 무거운 이름들을 내려놓고 감각의 흐름에 몸을 맡길 때, 당신의 내면에는 맑은 생동감이 기분 좋게 차오르기 시작할 것입니다.</p>' +
+        '<p style="margin-bottom:0;">복잡한 생각은 숲의 바람에 실어 보내세요. 그저 안내되는 감각의 흐름을 따라가는 것만으로도, 당신은 어느새 자연과 하나 된 가장 맑은 자신을 발견하게 될 것입니다.</p>' +
+      '</div>' +
+
+      '<button id="invite-start-btn" class="btn-primary" style="margin-top:36px;">시작하기</button>' +
+    '</div>'
+  );
 }
 
 function screenIntroHTML(){
@@ -827,7 +883,35 @@ function screenResultHTML(){
       '<div class="view-panel" id="view-chakra"></div>' +
       '<div class="result-detail" id="result-detail"></div>' +
       '<button id="save-result-img-btn" class="btn-outline" style="margin-top:22px;">🖼 이 페이지 이미지로 저장</button>' +
-      '<button id="restart-btn-result" class="btn-text" style="margin-top:18px;">처음부터 다시 하기</button>' +
+      '<button id="to-inquiry-btn" class="btn-primary" style="margin-top:18px;">다음</button>' +
+    '</div>'
+  );
+}
+
+function screenInquiryHTML(){
+  return (
+    '<div id="screen-inquiry" class="screen">' +
+      '<div class="inquiry-eyebrow">탐구를 마치며</div>' +
+
+      '<div class="inquiry-block">' +
+        '<div class="inquiry-num">I</div>' +
+        '<div class="inquiry-question">나는 어떤 사람인가?</div>' +
+      '</div>' +
+      '<div class="inquiry-divider"></div>' +
+
+      '<div class="inquiry-block">' +
+        '<div class="inquiry-num">II</div>' +
+        '<div class="inquiry-question">나는 어떤 불균형을<br>가지고 있나?</div>' +
+      '</div>' +
+      '<div class="inquiry-divider"></div>' +
+
+      '<div class="inquiry-block" style="margin-bottom:0;">' +
+        '<div class="inquiry-num">III</div>' +
+        '<div class="inquiry-question">자연과의 공명을 통한 조율</div>' +
+      '</div>' +
+
+      '<div class="inquiry-mark">W A U M</div>' +
+      '<button id="restart-btn-inquiry" class="btn-text" style="margin-top:28px;">처음부터 다시 하기</button>' +
     '</div>'
   );
 }
@@ -1454,6 +1538,10 @@ function bindEvents(){
       startBtn.disabled = state.name.length === 0;
     });
   }
+  var inviteStartBtn = document.getElementById('invite-start-btn');
+  if (inviteStartBtn){
+    inviteStartBtn.addEventListener('click', function(){ showScreen('intro'); });
+  }
   if (startBtn){
     startBtn.addEventListener('click', function(){
       if (!state.name) return;
@@ -1461,9 +1549,13 @@ function bindEvents(){
       renderSurveyInner();
     });
   }
-  var restartBtnResult = document.getElementById('restart-btn-result');
-  if (restartBtnResult){
-    restartBtnResult.addEventListener('click', function(){
+  var toInquiryBtn = document.getElementById('to-inquiry-btn');
+  if (toInquiryBtn){
+    toInquiryBtn.addEventListener('click', function(){ showScreen('inquiry'); });
+  }
+  var restartBtnInquiry = document.getElementById('restart-btn-inquiry');
+  if (restartBtnInquiry){
+    restartBtnInquiry.addEventListener('click', function(){
       state.name = '';
       state.answers = {};
       state.chapterIndex = 0;
