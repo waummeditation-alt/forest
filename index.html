@@ -47,6 +47,34 @@
 
   .mark{ font-family:'Noto Serif KR',serif; font-size:14px; letter-spacing:0.3em; color:var(--sage-deep); text-align:center; margin-bottom:8px;}
 
+  /* philosophy */
+  .phil-eyebrow{ font-size:12px; color:var(--tan-deep); letter-spacing:0.05em; margin:0 0 10px; }
+  .phil-title{ font-family:'Noto Serif KR',serif; font-weight:500; font-size:26px; line-height:1.4; margin:0 0 18px; }
+  .phil-rule{ width:32px; height:1px; background:var(--line); margin:0 0 26px; }
+  .phil-card{
+    background:var(--card); border-radius:4px; padding:26px 22px;
+    border-left:3px solid var(--tan); margin-bottom:26px;
+  }
+  .phil-card-label{ font-size:11.5px; color:var(--tan-deep); margin:0 0 14px; }
+  .phil-card p{ font-size:14px; line-height:1.75; margin:0 0 16px; }
+  .phil-card p.strong{ font-weight:600; margin-bottom:16px; }
+  .phil-card p.italic{ font-style:italic; color:var(--ink-soft); margin-bottom:0; }
+  .phil-lead{ font-size:14px; line-height:1.75; margin:0 0 20px; }
+  .dosha-row{ display:flex; gap:10px; margin-bottom:26px; }
+  .dosha-card{
+    flex:1; background:var(--card); border-radius:4px; border:1px solid var(--line);
+    padding:20px 8px 16px; text-align:center;
+  }
+  .dosha-icon{
+    width:42px; height:42px; border-radius:50%; background:var(--tan-soft);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 12px;
+  }
+  .dosha-icon svg{ width:20px; height:20px; }
+  .dosha-name{ font-size:14px; font-weight:700; color:var(--ink); margin:0 0 2px; }
+  .dosha-eng{ font-size:11px; font-weight:600; color:var(--sage); margin:0 0 6px; }
+  .dosha-el{ font-size:11px; color:var(--muted); }
+  #screen-philosophy .btn-primary{ margin-top:0; }
+
   /* intro */
   #screen-intro{ align-items:center; justify-content:center; text-align:center; }
   .breathe{
@@ -687,6 +715,7 @@ function elDesc(id){
 function render(){
   app.innerHTML =
     screenInviteHTML() +
+    screenPhilosophyHTML() +
     screenIntroHTML() +
     screenSurveyHTML() +
     screenBridgeHTML() +
@@ -700,7 +729,7 @@ function render(){
 }
 
 function showScreen(name){
-  ['invite','intro','survey','bridge','result','inquiry','method','report','save'].forEach(function(n){
+  ['invite','philosophy','intro','survey','bridge','result','inquiry','method','report','save'].forEach(function(n){
     var el = document.getElementById('screen-' + n);
     if (el) el.classList.toggle('active', n === name);
   });
@@ -720,13 +749,62 @@ function screenInviteHTML(){
 
       '<div class="invite-divider"></div>' +
 
-      '<div class="invite-section-title">숲의 리듬으로 나를 조율하는 시간</div>' +
+      '<div class="invite-section-title">자연과의 공명으로 나를 조율하는 시간</div>' +
       '<div class="invite-body" style="margin-top:18px;">' +
         '<p>이곳에서는 일상의 규칙을 잠시 잊어도 좋습니다. 애써 무언가를 하려 하지 않아도 괜찮습니다. 그저 감각을 열고, 마음의 주파수를 숲의 결에 맞추는 것 — 그것이 우리가 함께할 조율의 전부입니다.</p>' +
         '<p style="margin-bottom:0;">복잡한 생각은 숲의 바람에 실어 보내세요. 그 흐름을 따라가는 것만으로도, 당신은 어느새 자연과 하나 된 가장 맑은 자신을 발견하게 될 것입니다.</p>' +
       '</div>' +
 
       '<button id="invite-start-btn" class="btn-primary" style="margin-top:36px;">시작하기</button>' +
+    '</div>'
+  );
+}
+
+function screenPhilosophyHTML(){
+  return (
+    '<div id="screen-philosophy" class="screen">' +
+      '<div class="phil-eyebrow">첫 번째 탐구</div>' +
+      '<h1 class="phil-title">나는 어떤<br>사람일까요?</h1>' +
+      '<div class="phil-rule"></div>' +
+
+      '<div class="phil-card">' +
+        '<div class="phil-card-label">5원소 요가 철학</div>' +
+        '<p>요가철학에서는 세상의 모든 것을 5가지 기본 원소의 조합으로 설명합니다.</p>' +
+        '<p class="strong">흙(地)·물(水)·불(火)·바람(風)·공간(空)</p>' +
+        '<p>이 다섯 원소는 단순한 물질이 아니라 에너지의 성질입니다. 딱딱함과 무거움, 유연함과 흐름, 열기와 변환, 가벼움과 움직임, 그리고 모든 것을 담는 고요한 공간.</p>' +
+        '<p class="italic">자연 안의 바위도, 강물도, 불꽃도, 바람도, 하늘도 — 그리고 당신도, 이 원소들의 조합으로 만들어져 있습니다.</p>' +
+      '</div>' +
+
+      '<p class="phil-lead">사람은 저마다 다른 원소의 비율을 가지고 태어나는데, 이것이 나의 기질이고 캐릭터입니다.</p>' +
+
+      '<div class="dosha-row">' +
+        '<div class="dosha-card">' +
+          '<div class="dosha-icon">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="#8D8581" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18l5-7 4 5 3-4 6 6"/></svg>' +
+          '</div>' +
+          '<div class="dosha-name">카파</div>' +
+          '<div class="dosha-eng">Kapha</div>' +
+          '<div class="dosha-el">물 + 흙</div>' +
+        '</div>' +
+        '<div class="dosha-card">' +
+          '<div class="dosha-icon">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="#735D46" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2 3-1 4-1 6a3 3 0 106 0c0-1-1-2-1-3 2 2 3 4 3 7a6 6 0 11-12 0c0-3 2-5 5-10z"/></svg>' +
+          '</div>' +
+          '<div class="dosha-name">피타</div>' +
+          '<div class="dosha-eng">Pitta</div>' +
+          '<div class="dosha-el">불 + 물</div>' +
+        '</div>' +
+        '<div class="dosha-card">' +
+          '<div class="dosha-icon">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="#61756D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h11a2.5 2.5 0 100-5"/><path d="M3 15h15a2.5 2.5 0 110 5"/></svg>' +
+          '</div>' +
+          '<div class="dosha-name">바타</div>' +
+          '<div class="dosha-eng">Vata</div>' +
+          '<div class="dosha-el">바람 + 공간</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<button id="philosophy-start-btn" class="btn-primary">탐구 시작하기 →</button>' +
     '</div>'
   );
 }
@@ -1649,7 +1727,11 @@ function bindEvents(){
   }
   var inviteStartBtn = document.getElementById('invite-start-btn');
   if (inviteStartBtn){
-    inviteStartBtn.addEventListener('click', function(){ showScreen('intro'); });
+    inviteStartBtn.addEventListener('click', function(){ showScreen('philosophy'); });
+  }
+  var philosophyStartBtn = document.getElementById('philosophy-start-btn');
+  if (philosophyStartBtn){
+    philosophyStartBtn.addEventListener('click', function(){ showScreen('intro'); });
   }
   if (startBtn){
     startBtn.addEventListener('click', function(){
